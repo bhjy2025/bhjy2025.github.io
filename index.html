@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>题库 - 首页</title>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            transition: background 0.5s ease;
+        }
+        
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+        }
+        
+        .card {
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .btn {
+            transition: all 0.2s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .progress-bar {
+            transition: width 0.5s ease;
+        }
+        
+        .answer-area {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, opacity 0.5s ease;
+            opacity: 0;
+        }
+        
+        .answer-area.show {
+            max-height: 500px;
+            opacity: 1;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .input-focus {
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .input-focus:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+        }
+        
+        .timer-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .category-tag {
+            transition: all 0.2s ease;
+        }
+        
+        .category-tag:hover {
+            transform: scale(1.05);
+        }
+        
+        .dark-mode .card {
+            background-color: rgba(30, 41, 59, 0.9);
+        }
+        
+        .dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode p, .dark-mode span {
+            color: #f1f5f9;
+        }
+        
+        .dark-mode .text-gray-600, .dark-mode .text-gray-700, .dark-mode .text-gray-800 {
+            color: #e2e8f0;
+        }
+        
+        .dark-mode .bg-blue-50, .dark-mode .bg-green-50, .dark-mode .bg-purple-50 {
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+        
+        .dark-mode .border-gray-300 {
+            border-color: #475569;
+        }
+        
+        .dark-mode .input-focus:focus {
+            border-color: #818cf8;
+            box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.25);
+        }
+.cont-cen{
+width:400px;
+margin:auto;
+padding-top:50px;
+}
+ a, a:link,a:visited {
+    color: #FFF;
+    font-size:24px;
+}
+ a:hover {
+    color: #b4fbf5;
+}
+    </style>
+</head>
+<body>
+
+<div class="w-full max-w-4xl">
+        <!-- 头部 -->
+        <div class="text-center mb-8 fade-in cont-cen">            
+            <p class="text-xl "><a href="qmt-llyy-duoxuan.html">全媒体流量运营 - 多选</a></p>
+            <p class="text-xl"><a href="qmt-llyy-jianda.html">全媒体流量运营 - 简答</a></p>
+        </div>
+</body>
+</html>

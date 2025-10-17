@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全媒体流量运营题库 - 在线答题系统</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    
+    <!-- 数据定义 -->
+    <script>
+        const questionsData = [{"id":35,"question":"行业报告素材的主要来源有哪些？","answer":"政府公开数据、行业协会报告、市场研究机构报告、企业年报、专业期刊和杂志、网络论坛和社交媒体等。"},{"id":36,"question":"如何利用政府公开数据搜集行业素材？","answer":"访问政府官方网站，查找相关行业数据、政策文件、统计年报等。"},{"id":37,"question":"行业协会报告对行业报告素材搜集有何帮助？","answer":"提供行业发展趋势、市场现状、竞争格局、政策法规等关键信息。"},{"id":38,"question":"市场研究机构报告的主要特点是什么？","answer":"通常包含详细的市场分析、消费者行为研究、竞争格局、未来预测等。"},{"id":39,"question":"企业年报中哪些内容对行业报告素材搜集有价值？","answer":"企业业绩、市场份额、产品研发、战略规划、投资动态等。"},{"id":40,"question":"如何实现素材库的共享和协作？","answer":"通过设置访问权限、提供共享链接、建立协作平台等方式来实现团队成员之间的素材共享和协作。"},{"id":41,"question":"素材库管理中如何确保素材的安全性？","answer":"设置访问权限、定期备份数据、使用安全的存储平台、加强用户身份验证等。"},{"id":42,"question":"素材库的分类体系应该如何建立？","answer":"根据内容类型、主题领域、使用场景、时间周期等维度进行分类，建立层次化的分类体系。"},{"id":43,"question":"素材库中的素材如何进行版本控制？","answer":"为每个素材设置版本号、记录修改时间和修改人、保存历史版本、提供版本比较功能等。"},{"id":44,"question":"如何提高素材库的检索效率？","answer":"使用关键词搜索、标签过滤、分类导航、全文检索等技术，建立高效的检索系统。"},{"id":45,"question":"数据分析在素材库管理中有什么应用？","answer":"分析素材使用频率、用户偏好、内容趋势等，为素材库优化和内容策略制定提供数据支持。"},{"id":46,"question":"素材库的更新机制应该如何设计？","answer":"建立定期更新计划、设置更新提醒、明确更新责任人和流程、评估更新效果等。"},{"id":47,"question":"如何评估素材库的使用效果？","answer":"通过素材下载量、使用频率、用户反馈、项目成果等指标进行综合评估。"},{"id":48,"question":"素材库管理中常见的问题有哪些？","answer":"素材重复、分类混乱、更新不及时、权限管理不当、检索困难等。"},{"id":49,"question":"如何解决素材库中的素材重复问题？","answer":"建立素材查重机制、统一命名规范、合并相似素材、定期清理重复内容等。"},{"id":50,"question":"素材库管理系统的主要功能模块有哪些？","answer":"素材上传、存储管理、分类检索、权限控制、版本管理、统计分析等模块。"},{"id":51,"question":"大数据分析在流量运营中的主要应用场景有哪些？","answer":"用户行为分析、流量来源分析、内容效果评估、个性化推荐、预测分析等。"},{"id":52,"question":"如何利用大数据分析优化用户体验？","answer":"通过分析用户行为数据，识别用户痛点和需求，优化产品设计和内容呈现，提升用户满意度。"},{"id":53,"question":"大数据分析在内容创作中有什么作用？","answer":"指导内容选题、优化内容形式、预测内容效果、识别热点趋势等。"},{"id":54,"question":"如何利用大数据分析进行精准营销？","answer":"基于用户画像和行为数据，进行精准用户细分、个性化推荐、定向广告投放等。"},{"id":55,"question":"大数据分析在流量变现中的应用有哪些？","answer":"优化广告投放策略、提升转化率、制定差异化定价策略、开发新的变现渠道等。"},{"id":56,"question":"大数据分析中常用的分析方法有哪些？","answer":"描述性分析、诊断性分析、预测性分析、规范性分析等。"},{"id":57,"question":"如何确保大数据分析结果的准确性？","answer":"保证数据质量、选择合适的分析方法、进行数据清洗和预处理、验证分析结果等。"},{"id":58,"question":"大数据分析工具主要分为哪几类？","answer":"数据存储工具、数据处理工具、数据分析工具、数据可视化工具等。"},{"id":59,"question":"如何构建有效的用户画像？","answer":"收集用户基本属性、行为数据、兴趣偏好、消费习惯等信息，进行数据整合和分析，形成多维度的用户标签体系。"},{"id":60,"question":"大数据分析在竞品分析中的应用有哪些？","answer":"分析竞品流量来源、用户群体、内容策略、营销活动、市场表现等，为竞争策略制定提供参考。"},{"id":61,"question":"如何利用大数据分析预测流量趋势？","answer":"基于历史流量数据，使用时间序列分析、回归分析等方法，建立预测模型，预测未来流量变化趋势。"},{"id":62,"question":"大数据分析在风险控制中的作用是什么？","answer":"识别异常流量、检测作弊行为、评估内容合规风险、预测潜在危机等。"},{"id":63,"question":"如何利用大数据分析提升内容传播效果？","answer":"分析内容传播路径、识别关键传播节点、优化内容分享机制、预测传播效果等。"},{"id":64,"question":"大数据分析在用户留存中的应用有哪些？","answer":"识别流失风险用户、分析留存影响因素、制定个性化挽留策略、评估留存效果等。"},{"id":65,"question":"如何进行有效的流量来源分析？","answer":"识别主要流量渠道、分析各渠道流量质量、评估渠道转化效果、优化渠道投放策略等。"},{"id":66,"question":"大数据分析在产品迭代中的作用是什么？","answer":"基于用户反馈和行为数据，识别产品优化点、验证产品假设、指导产品功能设计、评估迭代效果等。"},{"id":67,"question":"如何利用大数据分析优化搜索引擎排名？","answer":"分析关键词搜索趋势、评估页面优化效果、监测竞争对手排名、优化SEO策略等。"},{"id":68,"question":"大数据分析中数据安全的重要性是什么？","answer":"保护用户隐私、防止数据泄露、确保数据完整性、遵守法律法规、维护企业声誉等。"},{"id":69,"question":"如何处理大数据分析中的数据缺失问题？","answer":"删除缺失数据、插补缺失值、使用对缺失数据不敏感的分析方法、收集更多数据等。"},{"id":70,"question":"大数据分析在用户生命周期管理中的应用有哪些？","answer":"识别用户生命周期阶段、制定针对性营销策略、优化用户体验、提升用户价值等。"},{"id":71,"question":"如何利用大数据分析优化广告投放效果？","answer":"分析广告投放数据、优化目标受众定位、调整广告创意和投放时间、评估广告ROI等。"},{"id":72,"question":"大数据分析在社交媒体运营中的作用是什么？","answer":"监测品牌提及、分析用户情感、识别意见领袖、优化内容策略、评估活动效果等。"},{"id":73,"question":"如何利用大数据分析进行内容个性化推荐？","answer":"基于用户历史行为和偏好，使用协同过滤、内容基于的推荐等算法，为用户推荐个性化内容。"},{"id":74,"question":"大数据分析在电商流量运营中的应用有哪些？","answer":"优化商品推荐、提升转化率、减少购物车放弃率、个性化定价、库存管理等。"},{"id":75,"question":"如何利用大数据分析优化移动应用体验？","answer":"分析用户使用行为、识别应用性能问题、优化用户界面、提升应用响应速度等。"},{"id":76,"question":"大数据分析在内容审核中的作用是什么？","answer":"自动识别违规内容、提高审核效率、降低人工成本、确保内容合规等。"},{"id":77,"question":"如何利用大数据分析提升电子邮件营销效果？","answer":"优化邮件发送时间、个性化邮件内容、精准用户细分、评估邮件打开和点击率等。"},{"id":78,"question":"大数据分析在直播运营中的应用有哪些？","answer":"分析观众行为、优化直播内容、提升互动效果、预测直播热度、优化直播推荐等。"},{"id":79,"question":"如何利用大数据分析优化短视频内容策略？","answer":"分析视频播放数据、识别热门内容特征、优化视频长度和格式、预测视频传播效果等。"},{"id":80,"question":"大数据分析在用户调研中的作用是什么？","answer":"收集和分析用户反馈、识别用户需求、验证产品假设、指导产品设计等。"},{"id":81,"question":"如何利用大数据分析提升网站转化率？","answer":"分析用户转化路径、识别转化障碍、优化页面设计、A/B测试不同方案等。"},{"id":82,"question":"大数据分析在游戏运营中的应用有哪些？","answer":"分析玩家行为、优化游戏难度、提升用户留存、个性化游戏体验、预测玩家流失等。"},{"id":83,"question":"如何利用大数据分析优化APP Store排名？","answer":"分析关键词搜索趋势、优化应用描述和截图、提升用户评分、优化应用更新策略等。"},{"id":84,"question":"大数据分析在内容SEO中的作用是什么？","answer":"指导关键词策略、优化内容结构、分析页面性能、监测搜索引擎排名变化等。"},{"id":85,"question":"如何利用大数据分析提升社交媒体互动率？","answer":"分析互动数据、优化发布时间、识别热门话题、优化内容形式、提升用户参与度等。"},{"id":86,"question":"大数据分析在O2O流量运营中的应用有哪些？","answer":"分析线上线下用户行为、优化门店选址、提升到店转化率、个性化营销活动等。"},{"id":87,"question":"如何利用大数据分析优化内容分发策略？","answer":"分析各平台表现、优化内容适配、识别最佳发布时间、评估分发效果等。"},{"id":88,"question":"大数据分析在用户忠诚度管理中的作用是什么？","answer":"识别高价值用户、分析忠诚度影响因素、制定个性化奖励机制、提升用户黏性等。"},{"id":89,"question":"如何利用大数据分析预测内容爆款？","answer":"分析历史爆款特征、识别热门趋势、评估内容潜力、预测传播效果等。"},{"id":90,"question":"大数据分析在跨境电商流量运营中的应用有哪些？","answer":"分析国际市场趋势、优化跨境物流、适应本地化需求、规避国际风险等。"},{"id":91,"question":"如何利用大数据分析优化内容生产流程？","answer":"分析内容生产效率、识别瓶颈环节、优化团队协作、提升内容质量等。"},{"id":92,"question":"大数据分析在付费流量优化中的作用是什么？","answer":"优化投放策略、提升ROI、识别高价值渠道、精准受众定位等。"},{"id":93,"question":"如何利用大数据分析提升用户参与度？","answer":"分析用户参与行为、优化互动机制、个性化内容推荐、创造参与激励等。"},{"id":94,"question":"大数据分析在小程序运营中的应用有哪些？","answer":"分析用户使用路径、优化小程序体验、提升留存率、优化功能设计等。"},{"id":95,"question":"如何利用大数据分析优化内容标签体系？","answer":"分析标签使用频率、优化标签层级、建立标签关联、提升内容检索效率等。"},{"id":96,"question":"大数据分析在品牌建设中的作用是什么？","answer":"监测品牌声誉、分析品牌认知度、评估品牌资产、优化品牌策略等。"},{"id":97,"question":"如何利用大数据分析提升用户满意度？","answer":"分析用户反馈、识别满意度影响因素、优化产品和服务、提升用户体验等。"},{"id":98,"question":"大数据分析在内容付费转化中的应用有哪些？","answer":"分析付费用户特征、优化付费路径、个性化付费推荐、提升付费转化率等。"},{"id":99,"question":"如何利用大数据分析优化客服体验？","answer":"分析客服数据、识别常见问题、优化客服流程、提升响应速度、个性化服务等。"},{"id":100,"question":"大数据分析在会员体系运营中的作用是什么？","answer":"分析会员行为、优化会员权益、提升会员活跃度、增加会员价值等。"},{"id":101,"question":"如何利用大数据分析提升内容传播速度？","answer":"识别传播关键节点、优化分享机制、预测传播路径、加速内容扩散等。"},{"id":102,"question":"大数据分析在AR/VR内容运营中的应用有哪些？","answer":"分析用户交互数据、优化沉浸式体验、提升内容吸引力、预测技术趋势等。"},{"id":103,"question":"如何利用大数据分析优化内容SEO策略？","answer":"分析关键词竞争度、优化内容结构、提升页面加载速度、监测排名变化等。"},{"id":104,"question":"大数据分析在用户教育中的作用是什么？","answer":"分析学习行为、个性化学习路径、评估学习效果、优化教育内容等。"},{"id":105,"question":"如何利用大数据分析提升社区活跃度？","answer":"分析社区互动数据、优化社区规则、识别活跃用户、创造有价值的讨论话题等。"},{"id":106,"question":"大数据分析在AI内容创作中的应用有哪些？","answer":"辅助内容生成、优化内容质量、个性化内容推荐、提升创作效率等。"},{"id":107,"question":"如何利用大数据分析优化内容审核流程？","answer":"自动化内容筛查、提高审核效率、降低人工成本、确保内容合规等。"},{"id":108,"question":"大数据分析在品牌合作中的作用是什么？","answer":"识别合适的合作对象、评估合作效果、优化合作策略、提升品牌影响力等。"},{"id":109,"question":"如何利用大数据分析提升用户分享意愿？","answer":"分析分享行为、优化分享机制、创造值得分享的内容、提供分享激励等。"},{"id":110,"question":"大数据分析在内容本地化中的应用有哪些？","answer":"分析区域用户特征、优化本地化内容、适应当地文化、提升区域影响力等。"},{"id":111,"question":"如何利用大数据分析优化内容发布时间？","answer":"分析用户活跃时段、识别最佳发布窗口、优化发布策略、提升内容曝光等。"},{"id":112,"question":"大数据分析在用户召回中的作用是什么？","answer":"识别流失用户、分析流失原因、制定召回策略、评估召回效果等。"},{"id":113,"question":"如何利用大数据分析提升内容互动质量？","answer":"分析互动数据、优化互动设计、提升用户参与深度、创造有价值的互动体验等。"},{"id":114,"question":"大数据分析在新兴平台运营中的应用有哪些？","answer":"分析平台特性、识别早期机会、优化内容策略、快速适应平台规则等。"},{"id":115,"question":"如何利用大数据分析优化内容长度？","answer":"分析用户阅读行为、识别最佳长度、优化内容结构、提升阅读完成率等。"},{"id":116,"question":"大数据分析在内容版权管理中的作用是什么？","answer":"监测版权侵权、追踪内容传播、保护知识产权、维护合法权益等。"},{"id":117,"question":"如何利用大数据分析提升内容权威性？","answer":"分析专业内容表现、识别权威信息特征、优化内容深度、提升用户信任度等。"},{"id":118,"question":"大数据分析在内容多元化中的应用有哪些？","answer":"分析内容多样性、识别内容缺口、优化内容组合、满足不同用户需求等。"},{"id":119,"question":"如何利用大数据分析优化内容导航？","answer":"分析用户浏览路径、优化导航结构、提升内容可达性、改善用户体验等。"},{"id":120,"question":"大数据分析在内容国际化中的作用是什么？","answer":"分析国际市场需求、优化多语言内容、适应当地法规、提升全球影响力等。"},{"id":121,"question":"如何利用大数据分析提升内容原创性？","answer":"监测内容相似度、识别抄袭风险、鼓励创新思维、提升原创内容比例等。"},{"id":122,"question":"大数据分析在内容情感营销中的应用有哪些？","answer":"分析用户情感反应、优化情感表达、创造情感共鸣、提升营销效果等。"},{"id":123,"question":"如何利用大数据分析优化内容可视化？","answer":"分析可视化效果、优化图表设计、提升信息传达效率、增强用户理解等。"},{"id":124,"question":"大数据分析在内容付费模式设计中的作用是什么？","answer":"分析付费意愿、优化定价策略、设计付费套餐、提升付费转化率等。"},{"id":125,"question":"如何利用大数据分析提升内容传播广度？","answer":"分析传播路径、识别关键节点、优化分享机制、扩大受众覆盖等。"},{"id":126,"question":"大数据分析在内容运营团队管理中的应用有哪些？","answer":"分析团队绩效、优化工作流程、提升协作效率、制定培训计划等。"},{"id":127,"question":"如何利用大数据分析预测内容生命周期？","answer":"分析内容衰减曲线、识别生命周期阶段、优化更新策略、延长内容价值等。"},{"id":128,"question":"大数据分析在内容众包中的作用是什么？","answer":"识别优质贡献者、评估内容质量、优化激励机制、提升众包效率等。"},{"id":129,"question":"如何利用大数据分析优化内容SEO标题？","answer":"分析标题点击率、优化关键词布局、提升标题吸引力、提高搜索可见度等。"},{"id":130,"question":"大数据分析在内容合规管理中的应用有哪些？","answer":"自动识别违规内容、监测合规风险、提供合规建议、确保内容合法合规等。"},{"id":131,"question":"如何利用大数据分析提升内容搜索体验？","answer":"优化搜索算法、提升搜索准确度、提供智能推荐、改善搜索结果展示等。"},{"id":132,"question":"大数据分析在内容跨平台运营中的作用是什么？","answer":"分析平台特性、优化内容适配、统一运营策略、提升整体效果等。"},{"id":133,"question":"如何利用大数据分析优化内容互动设计？","answer":"分析互动行为、优化互动元素、提升用户参与度、创造良好互动体验等。"},{"id":134,"question":"大数据分析在内容付费会员运营中的应用有哪些？","answer":"分析会员行为、优化会员权益、提升会员留存、增加会员价值等。"},{"id":135,"question":"如何利用大数据分析提升内容品牌影响力？","answer":"分析品牌提及、评估品牌认知、优化品牌表达、提升品牌价值等。"},{"id":136,"question":"大数据分析在内容电商中的作用是什么？","answer":"优化商品推荐、提升购买转化率、分析用户购买行为、个性化购物体验等。"},{"id":137,"question":"如何利用大数据分析优化内容标签策略？","answer":"分析标签效果、优化标签体系、提升内容关联、改善内容发现等。"},{"id":138,"question":"大数据分析在内容直播运营中的应用有哪些？","answer":"分析观众行为、优化直播内容、提升互动效果、预测直播热度等。"},{"id":139,"question":"如何利用大数据分析提升内容创作者效率？","answer":"分析创作过程、优化工作流程、提供创作建议、提升内容质量等。"},{"id":140,"question":"大数据分析在内容付费订阅中的作用是什么？","answer":"分析订阅行为、优化订阅套餐、提升续订率、增加订阅价值等。"},{"id":141,"question":"如何利用大数据分析优化内容广告投放？","answer":"精准受众定位、优化广告创意、提升广告相关性、提高广告ROI等。"},{"id":142,"question":"大数据分析在内容社群运营中的应用有哪些？","answer":"分析社群互动、识别核心成员、优化社群规则、提升社群活跃度等。"},{"id":143,"question":"如何利用大数据分析提升内容个性化体验？","answer":"分析用户偏好、提供个性化推荐、定制内容展示、创造专属体验等。"},{"id":144,"question":"大数据分析在内容创新中的作用是什么？","answer":"识别创新机会、验证创新假设、评估创新效果、推动持续创新等。"}];
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            transition: background 0.5s ease;
+        }
+        
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+        }
+        
+        .card {
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .btn {
+            transition: all 0.2s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .progress-bar {
+            transition: width 0.5s ease;
+        }
+        
+        .answer-area {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, opacity 0.5s ease;
+            opacity: 0;
+        }
+        
+        .answer-area.show {
+            max-height: 500px;
+            opacity: 1;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .input-focus {
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .input-focus:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+        }
+        
+        .timer-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .category-tag {
+            transition: all 0.2s ease;
+        }
+        
+        .category-tag:hover {
+            transform: scale(1.05);
+        }
+        
+        .dark-mode .card {
+            background-color: rgba(30, 41, 59, 0.9);
+        }
+        
+        .dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode p, .dark-mode span {
+            color: #f1f5f9;
+        }
+        
+        .dark-mode .text-gray-600, .dark-mode .text-gray-700, .dark-mode .text-gray-800 {
+            color: #e2e8f0;
+        }
+        
+        .dark-mode .bg-blue-50, .dark-mode .bg-green-50, .dark-mode .bg-purple-50 {
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+        
+        .dark-mode .border-gray-300 {
+            border-color: #475569;
+        }
+        
+        .dark-mode .input-focus:focus {
+            border-color: #818cf8;
+            box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.25);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
+    <div class="w-full max-w-4xl">
+        <!-- 头部 -->
+        <div class="text-center mb-8 fade-in">
+            <div class="flex justify-between items-center mb-4">
+                <h1 class="text-4xl font-bold text-white mb-2">全媒体流量运营题库</h1>
+                <button id="theme-toggle" class="btn bg-white/20 hover:bg-white/30 text-white p-3 rounded-full">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+            <p class="text-xl text-blue-100">在线答题系统</p>
+        </div>
+        
+        <!-- 答题卡片 -->
+        <div class="card bg-white/90 rounded-2xl shadow-xl p-8 mb-8 fade-in">
+            <!-- 进度条 -->
+            <div class="mb-6">
+                <div class="flex justify-between text-sm text-gray-600 mb-2">
+                    <span>进度：<span id="current-question">1</span>/<span id="total-questions">90</span></span>
+                    <span>已答：<span id="answered-count">0</span>题</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-3">
+                    <div id="progress-bar" class="progress-bar bg-gradient-to-r from-blue-500 to-purple-600 h-3 rounded-full" style="width: 0%"></div>
+                </div>
+            </div>
+            
+            <!-- 计时器 -->
+            <div class="flex justify-end mb-6">
+                <div id="timer" class="bg-blue-100 text-blue-800 px-4 py-2 rounded-lg font-mono text-lg">
+                    <i class="fas fa-clock mr-2"></i>
+                    <span id="time-elapsed">00:00</span>
+                </div>
+            </div>
+            
+            <!-- 题目区域 -->
+            <div class="mb-6">
+                <div class="flex items-center mb-4">
+                    <span id="question-number" class="bg-blue-600 text-white px-4 py-2 rounded-full font-bold text-lg">题目 1</span>
+                </div>
+                <h2 id="question-text" class="text-2xl font-semibold text-gray-800 mb-6">加载题目中...</h2>
+            </div>
+            
+            <!-- 用户作答区域 -->
+            <div class="mb-6">
+                <label for="user-answer" class="block text-gray-700 font-medium mb-2">
+                    <i class="fas fa-pencil-alt mr-2"></i>你的答案：
+                </label>
+                <textarea id="user-answer" class="input-focus w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-700 focus:outline-none" rows="4" placeholder="请在此输入你的答案..."></textarea>
+            </div>
+            
+            <!-- 答案显示区域 -->
+            <div id="answer-area" class="answer-area bg-blue-50 rounded-xl p-6 mb-6">
+                <h3 class="text-xl font-semibold text-blue-800 mb-3">
+                    <i class="fas fa-lightbulb mr-2"></i>参考答案：
+                </h3>
+                <p id="answer-text" class="text-gray-700 leading-relaxed"></p>
+            </div>
+            
+            <!-- 按钮区域 -->
+            <div class="flex flex-wrap justify-between items-center gap-4">
+                <button id="prev-btn" class="btn bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                    <i class="fas fa-arrow-left mr-2"></i>上一题
+                </button>
+                
+                <div class="flex gap-4">
+                    <button id="submit-btn" class="btn bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium">
+                        <i class="fas fa-check mr-2"></i>提交答案
+                    </button>
+                    <button id="random-btn" class="btn bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium">
+                        <i class="fas fa-random mr-2"></i>随机题目
+                    </button>
+                </div>
+                
+                <button id="next-btn" class="btn bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium">
+                    下一题<i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 统计卡片 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <!-- 基本统计 -->
+            <div class="card bg-white/90 rounded-2xl shadow-xl p-6 fade-in">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">
+                    <i class="fas fa-chart-pie mr-2"></i>答题统计
+                </h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-blue-50 rounded-lg p-4 text-center">
+                        <div class="text-2xl font-bold text-blue-600" id="stats-total">90</div>
+                        <div class="text-gray-600">总题目数</div>
+                    </div>
+                    <div class="bg-green-50 rounded-lg p-4 text-center">
+                        <div class="text-2xl font-bold text-green-600" id="stats-answered">0</div>
+                        <div class="text-gray-600">已答题目</div>
+                    </div>
+                    <div class="bg-purple-50 rounded-lg p-4 text-center">
+                        <div class="text-2xl font-bold text-purple-600" id="stats-remaining">90</div>
+                        <div class="text-gray-600">剩余题目</div>
+                    </div>
+                    <div class="bg-orange-50 rounded-lg p-4 text-center">
+                        <div class="text-2xl font-bold text-orange-600" id="stats-progress">0%</div>
+                        <div class="text-gray-600">完成进度</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 分类统计 -->
+            <div class="card bg-white/90 rounded-2xl shadow-xl p-6 fade-in">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">
+                    <i class="fas fa-tags mr-2"></i>题目分类
+                </h3>
+                <div class="flex flex-wrap gap-2" id="category-tags">
+                    <span class="category-tag bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                        行业报告 <span class="bg-blue-800 text-white px-2 py-0.5 rounded-full text-xs">15</span>
+                    </span>
+                    <span class="category-tag bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
+                        大数据分析 <span class="bg-green-800 text-white px-2 py-0.5 rounded-full text-xs">75</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 导航卡片 -->
+        <div class="card bg-white/90 rounded-2xl shadow-xl p-6 fade-in">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">
+                <i class="fas fa-map mr-2"></i>题目导航
+            </h3>
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <span class="text-gray-600">跳转到题目：</span>
+                    <input type="number" id="jump-to-question" min="1" max="90" value="1" 
+                           class="input-focus w-16 px-3 py-2 rounded-lg border border-gray-300 text-gray-700 focus:outline-none">
+                </div>
+                <button id="jump-btn" class="btn bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-medium">
+                    <i class="fas fa-arrow-right mr-1"></i>跳转
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 全局变量
+            let currentQuestionIndex = 0;
+            let answeredQuestions = new Set();
+            let startTime = new Date();
+            let timerInterval;
+            const totalQuestions = questionsData.length;
+            
+            // DOM元素
+            const questionNumberEl = document.getElementById('question-number');
+            const questionTextEl = document.getElementById('question-text');
+            const userAnswerEl = document.getElementById('user-answer');
+            const answerAreaEl = document.getElementById('answer-area');
+            const answerTextEl = document.getElementById('answer-text');
+            const submitBtn = document.getElementById('submit-btn');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const randomBtn = document.getElementById('random-btn');
+            const jumpBtn = document.getElementById('jump-btn');
+            const jumpToQuestionEl = document.getElementById('jump-to-question');
+            const currentQuestionEl = document.getElementById('current-question');
+            const totalQuestionsEl = document.getElementById('total-questions');
+            const answeredCountEl = document.getElementById('answered-count');
+            const progressBarEl = document.getElementById('progress-bar');
+            const statsTotalEl = document.getElementById('stats-total');
+            const statsAnsweredEl = document.getElementById('stats-answered');
+            const statsRemainingEl = document.getElementById('stats-remaining');
+            const statsProgressEl = document.getElementById('stats-progress');
+            const timeElapsedEl = document.getElementById('time-elapsed');
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            
+            // 初始化
+            function init() {
+                totalQuestionsEl.textContent = totalQuestions;
+                statsTotalEl.textContent = totalQuestions;
+                jumpToQuestionEl.max = totalquestions;
+                
+                loadQuestion(currentQuestionIndex);
+                updateStats();
+                startTimer();
+                
+                // 检查主题偏好
+                if (localStorage.getItem('theme') === 'dark' || 
+                    (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.body.classList.add('dark-mode');
+                    themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+            }
+            
+            // 加载题目
+            function loadQuestion(index) {
+                if (index < 0 || index >= totalQuestions) return;
+                
+                currentQuestionIndex = index;
+                const question = questionsData[index];
+                
+                questionNumberEl.textContent = `题目 ${question.id}`;
+                questionTextEl.textContent = question.question;
+                userAnswerEl.value = '';
+                answerAreaEl.classList.remove('show');
+                
+                // 更新导航按钮状态
+                prevBtn.disabled = index === 0;
+                nextBtn.disabled = index === totalQuestions - 1;
+                
+                // 更新当前题目指示器
+                currentQuestionEl.textContent = index + 1;
+                jumpToQuestionEl.value = index + 1;
+                
+                // 检查是否已答
+                if (answeredQuestions.has(index)) {
+                    answerAreaEl.classList.add('show');
+                    answerTextEl.textContent = question.answer;
+                }
+                
+                // 更新进度条
+                const progress = ((index + 1) / totalQuestions) * 100;
+                progressBarEl.style.width = `${progress}%`;
+                
+                // 滚动到顶部
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            
+            // 提交答案
+            function submitAnswer() {
+                if (answeredQuestions.has(currentQuestionIndex)) return;
+                
+                answeredQuestions.add(currentQuestionIndex);
+                answerAreaEl.classList.add('show');
+                answerTextEl.textContent = questionsData[currentQuestionIndex].answer;
+                
+                updateStats();
+                
+                // 添加提交动画
+                submitBtn.classList.add('timer-pulse');
+                setTimeout(() => {
+                    submitBtn.classList.remove('timer-pulse');
+                }, 1000);
+            }
+            
+            // 更新统计信息
+            function updateStats() {
+                const answeredCount = answeredQuestions.size;
+                answeredCountEl.textContent = answeredCount;
+                statsAnsweredEl.textContent = answeredCount;
+                statsRemainingEl.textContent = totalQuestions - answeredCount;
+                
+                const progressPercentage = Math.round((answeredCount / totalQuestions) * 100);
+                statsProgressEl.textContent = `${progressPercentage}%`;
+            }
+            
+            // 开始计时器
+            function startTimer() {
+                startTime = new Date();
+                timerInterval = setInterval(updateTimer, 1000);
+            }
+            
+            // 更新计时器
+            function updateTimer() {
+                const currentTime = new Date();
+                const elapsedSeconds = Math.floor((currentTime - startTime) / 1000);
+                
+                const minutes = Math.floor(elapsedSeconds / 60).toString().padStart(2, '0');
+                const second = (elapsedSeconds % 60).toString().padStart(2, '0');
+                
+                timeElapsedEl.textContent = `${minute}:${second}`;
+            }
+            
+            // 切换主题
+            function toggleTheme() {
+                document.body.classList.toggle('dark-mode');
+                
+                if (document.body.classList.contains('dark-mode')) {
+                    themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+                    localStorage.setItem('theme', 'light');
+                }
+            }
+            
+            // 跳转到指定题目
+            function jumpToQuestion() {
+                const questionNumber = parseInt(jumpToQuestionEl.value);
+                if (isNaN(questionNumber) || questionNumber < 1 || questionNumber > totalQuestions) {
+                    jumpToQuestionEl.value = currentQuestionIndex + 1;
+                    return;
+                }
+                
+                loadQuestion(questionNumber - 1);
+            }
+            
+            // 事件监听
+            submitBtn.addEventListener('click', submitAnswer);
+            
+            prevBtn.addEventListener('click', () => {
+                loadQuestion(currentQuestionIndex - 1);
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                loadQuestion(currentQuestionIndex + 1);
+            });
+            
+            randomBtn.addEventListener('click', () => {
+                const randomIndex = Math.floor(Math.random() * totalQuestions);
+                loadQuestion(randomIndex);
+            });
+            
+            jumpBtn.addEventListener('click', jumpToQuestion);
+            
+            jumpToQuestionEl.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    jumpToQuestion();
+                }
+            });
+            
+            themeToggleBtn.addEventListener('click', toggleTheme);
+            
+            // 键盘快捷键
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    submitAnswer();
+                } else if (e.key === 'ArrowLeft') {
+                    if (!prevBtn.disabled) loadQuestion(currentQuestionIndex - 1);
+                } else if (e.key === 'ArrowRight') {
+                    if (!nextBtn.disabled) loadQuestion(currentQuestionIndex + 1);
+                }
+            });
+            
+            // 初始化应用
+            init();
+        });
+    </script>
+</body>
+</html>

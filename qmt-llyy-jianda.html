@@ -39,6 +39,8 @@
         
         .btn {
             transition: all 0.2s ease;
+            font-size: 0.875rem; /* 14px */
+            white-space: nowrap;
         }
         
         .btn:hover {
@@ -128,7 +130,7 @@
         <!-- 头部 -->
         <div class="text-center mb-8 fade-in">
             <div class="flex justify-between items-center mb-4">
-                <h1 class="text-4xl font-bold text-white mb-2">全媒体流量运营题库</h1>
+                <h1 class="text-3xl font-bold text-white mb-2">全媒体流量运营题库</h1>
                 <button id="theme-toggle" class="btn bg-white/20 hover:bg-white/30 text-white p-3 rounded-full">
                     <i class="fas fa-moon"></i>
                 </button>
@@ -141,7 +143,7 @@
             <!-- 进度条 -->
             <div class="mb-6">
                 <div class="flex justify-between text-sm text-gray-600 mb-2">
-                    <span>进度：<span id="current-question">1</span>/<span id="total-questions">90</span></span>
+                    <span>进度：<span id="current-question">35</span>/<span id="total-questions">90</span></span>
                     <span>已答：<span id="answered-count">0</span>题</span>
                 </div>
                 <div class="w-full bg-gray-200 rounded-full h-3">
@@ -160,9 +162,9 @@
             <!-- 题目区域 -->
             <div class="mb-6">
                 <div class="flex items-center mb-4">
-                    <span id="question-number" class="bg-blue-600 text-white px-4 py-2 rounded-full font-bold text-lg">题目 1</span>
+                    <span id="question-number" class="bg-blue-600 text-white px-4 py-2 rounded-full font-bold text-m">题目 35</span>
                 </div>
-                <h2 id="question-text" class="text-2xl font-semibold text-gray-800 mb-6">加载题目中...</h2>
+                <h2 id="question-text" class="text-xl font-semibold text-gray-800 mb-6">加载题目中...</h2>
             </div>
             
             <!-- 用户作答区域 -->
@@ -174,7 +176,7 @@
             </div>
             
             <!-- 答案显示区域 -->
-            <div id="answer-area" class="answer-area bg-blue-50 rounded-xl p-6 mb-6">
+            <div id="answer-area" class="answer-area bg-blue-50 rounded-xl p-4 mb-4">
                 <h3 class="text-xl font-semibold text-blue-800 mb-3">
                     <i class="fas fa-lightbulb mr-2"></i>参考答案：
                 </h3>
@@ -183,21 +185,21 @@
             
             <!-- 按钮区域 -->
             <div class="flex flex-wrap justify-between items-center gap-4">
-                <button id="prev-btn" class="btn bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed" disabled>
-                    <i class="fas fa-arrow-left mr-2"></i>上一题
+                <button id="prev-btn" class="btn bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                    <i class="fas fa-arrow-left mr-1"></i>上一题
                 </button>
                 
                 <div class="flex gap-4">
-                    <button id="submit-btn" class="btn bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium">
-                        <i class="fas fa-check mr-2"></i>提交答案
+                    <button id="submit-btn" class="btn bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium">
+                        <i class="fas fa-check mr-1"></i>提交答案
                     </button>
-                    <button id="random-btn" class="btn bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium">
-                        <i class="fas fa-random mr-2"></i>随机题目
+                    <button id="random-btn" class="btn bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-medium">
+                        <i class="fas fa-random mr-1"></i>随机题目
                     </button>
                 </div>
                 
-                <button id="next-btn" class="btn bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium">
-                    下一题<i class="fas fa-arrow-right ml-2"></i>
+                <button id="next-btn" class="btn bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium">
+                    下一题<i class="fas fa-arrow-right ml-1"></i>
                 </button>
             </div>
         </div>
@@ -253,7 +255,7 @@
             <div class="flex justify-between items-center">
                 <div class="flex items-center gap-2">
                     <span class="text-gray-600">跳转到题目：</span>
-                    <input type="number" id="jump-to-question" min="1" max="90" value="1" 
+                    <input type="number" id="jump-to-question" min="35" max="144" value="35" 
                            class="input-focus w-16 px-3 py-2 rounded-lg border border-gray-300 text-gray-700 focus:outline-none">
                 </div>
                 <button id="jump-btn" class="btn bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-medium">
@@ -266,7 +268,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // 全局变量
-            let currentQuestionIndex = 0;
+            let currentQuestionIndex = 0; // 设置为0，默认显示题库中的第一个题目
             let answeredQuestions = new Set();
             let startTime = new Date();
             let timerInterval;
@@ -299,7 +301,8 @@
             function init() {
                 totalQuestionsEl.textContent = totalQuestions;
                 statsTotalEl.textContent = totalQuestions;
-                jumpToQuestionEl.max = totalquestions;
+                jumpToQuestionEl.max = questionsData[totalQuestions - 1].id;
+                jumpToQuestionEl.min = questionsData[0].id;
                 
                 loadQuestion(currentQuestionIndex);
                 updateStats();
@@ -330,8 +333,8 @@
                 nextBtn.disabled = index === totalQuestions - 1;
                 
                 // 更新当前题目指示器
-                currentQuestionEl.textContent = index + 1;
-                jumpToQuestionEl.value = index + 1;
+                currentQuestionEl.textContent = question.id;
+                jumpToQuestionEl.value = question.id;
                 
                 // 检查是否已答
                 if (answeredQuestions.has(index)) {
@@ -387,9 +390,9 @@
                 const elapsedSeconds = Math.floor((currentTime - startTime) / 1000);
                 
                 const minutes = Math.floor(elapsedSeconds / 60).toString().padStart(2, '0');
-                const second = (elapsedSeconds % 60).toString().padStart(2, '0');
+                const seconds = (elapsedSeconds % 60).toString().padStart(2, '0');
                 
-                timeElapsedEl.textContent = `${minute}:${second}`;
+                timeElapsedEl.textContent = `${minutes}:${seconds}`;
             }
             
             // 切换主题
@@ -407,13 +410,19 @@
             
             // 跳转到指定题目
             function jumpToQuestion() {
-                const questionNumber = parseInt(jumpToQuestionEl.value);
-                if (isNaN(questionNumber) || questionNumber < 1 || questionNumber > totalQuestions) {
-                    jumpToQuestionEl.value = currentQuestionIndex + 1;
+                const questionId = parseInt(jumpToQuestionEl.value);
+                if (isNaN(questionId) || questionId < questionsData[0].id || questionId > questionsData[totalQuestions - 1].id) {
+                    jumpToQuestionEl.value = questionsData[currentQuestionIndex].id;
                     return;
                 }
                 
-                loadQuestion(questionNumber - 1);
+                // 查找题目ID对应的索引
+                const index = questionsData.findIndex(q => q.id === questionId);
+                if (index !== -1) {
+                    loadQuestion(index);
+                } else {
+                    jumpToQuestionEl.value = questionsData[currentQuestionIndex].id;
+                }
             }
             
             // 事件监听
